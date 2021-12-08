@@ -5,5 +5,6 @@ function main () {
   console.log("existing console log")
 }
 
+console.log("im bad")
 
 main()

@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        # with:
+          # fetch-depth: 0
 
       - name: Count total console logs and set env
         run: echo "TOTAL_CONSOLE_LOGS=$(git diff  ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log\( | wc -l)" >> $GITHUB_ENV

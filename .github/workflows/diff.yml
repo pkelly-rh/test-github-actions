@@ -15,7 +15,8 @@ jobs:
       # - run: echo ${{ env.GIT_DIFF }}
 
       - name: Set env BRANCH
-        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+        # run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+        run: echo "BRANCH=$(echo $GITHUB_REF#refs/heads/)" >> $GITHUB_ENV
 
       - name: Set env BASE_SHA
         run: echo "BASE_SHA=$(github.event.pull_request.base.sha)" >> $GITHUB_ENV

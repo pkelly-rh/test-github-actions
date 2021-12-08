@@ -13,7 +13,8 @@ jobs:
     #       CHECK_ONLY_COMMIT_WHEN_DRAFT: true
     #   # ...
       # - run: echo ${{ env.GIT_DIFF }}
-
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
       - name: Set env BRANCH
         # run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
         run: echo "BRANCH=$(echo $GITHUB_REF#refs/heads/)" >> $GITHUB_ENV
@@ -27,7 +28,7 @@ jobs:
       # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log | wc -l
       # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }} | grep console.log | wc -l
       # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }} | grep console.log | wc -l
-      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }}
+      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ github.ref }}
 
 
       # GITHUB_REF#refs/heads/

@@ -12,13 +12,16 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       # no need to specify `fetch-depth`, let it default to most recent commit only.
-      - run: echo ${{ github.event.pull_request.base.sha }}
-      - run: echo ${{ github.sha }}
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      # - run: echo ${{ github.event.pull_request.base.sha }}
+      # - run: echo ${{ github.sha }}
       - name: Fetch and Diff PR with base from which it was cloned
         # git fetch will fail if ${{ github.event.pull_request.base.sha }} is not set.
         # ${{ github.event.pull_request.base.sha }} WILL be set for event `pull_request`
         if: ${{ github.event.pull_request.base.sha }}  
         run: |
           git fetch origin main ${{ github.event.pull_request.base.sha }}
-          echo git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep console.log | wc -l
+          echo git diff ${{ github.event.pull_request.base.sha }} ${{ github.ref }} | grep console.log | wc -l
         id: total_console_logs
+
+        # echo git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep console.log | wc -l

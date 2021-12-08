@@ -19,7 +19,7 @@ jobs:
 
       - name: Get base sha
         shell: bash
-        run: echo "##[set-output name=sha;]$(echo ${github.event.pull_request.base.sha})"
+        run: echo "##[set-output name=sha;]$(echo fooo ${github.event.pull_request.base.sha})"
         id: get_base_sha
 
       # no need to specify `fetch-depth`, let it default to most recent commit only.

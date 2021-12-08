@@ -10,6 +10,7 @@ jobs:
     outputs:
       all: ${{ steps.changes.outputs.all}}
       ts: ${{ steps.changes.outputs.ts }}
+      lines: ${{ steps.changes.outputs.lines }}
     steps:
         # Make sure we have some code to diff.
       - name: Checkout repository
@@ -22,12 +23,13 @@ jobs:
         run: |
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
+          echo "::set-output name=lines::$(git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }})"
   lint:
     runs-on: ubuntu-latest
     # require the first job to have ran
     needs: changedfiles
     # only run there are changed files
-    if: ${{needs.changedfiles.outputs.ts}}
+    # if: ${{needs.changedfiles.outputs.ts}}
     steps:
       - name: echo changed files
-        run: echo ${{needs.changedfiles.outputs.all}}
+        run: echo ${{needs.changedfiles.outputs.lines}}

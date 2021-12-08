@@ -8,6 +8,10 @@ function main () {
   console.log("new console log")
 
   console.log("new console log 2")
+
+
+  console.log("new console log 3")
+  
 }
 
 

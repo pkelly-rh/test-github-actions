@@ -1,0 +1,17 @@
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed, ready_for_review]
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+    #   - uses: actions/checkout@v2
+    #   - uses: technote-space/get-diff-action@v5
+    #     with:
+    #       CHECK_ONLY_COMMIT_WHEN_DRAFT: true
+    #   # ...
+      # - run: echo ${{ env.GIT_DIFF }}
+      - run: echo nice ${{ github.event.pull_request.base.sha }}
+      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log | wc -l

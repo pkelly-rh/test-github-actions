@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# source: https://gist.github.com/guilherme/9604324
+
 # Redirect output to stderr.
 exec 1>&2
 # enable user input

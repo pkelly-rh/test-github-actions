@@ -7,8 +7,8 @@ jobs:
   changedfiles:
     runs-on: ubuntu-latest
     # Map a step output to a job output
-    outputs:
-      lines: ${{ steps.changes.outputs.lines }}
+    # outputs:
+    #   lines: ${{ steps.changes.outputs.lines }}
     steps:
         # Make sure we have some code to diff.
       - name: Checkout repository

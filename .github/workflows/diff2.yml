@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
-      all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.ts }}
       lines: ${{ steps.changes.outputs.lines }}
     steps:
         # Make sure we have some code to diff.
@@ -17,19 +15,18 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - run: echo BASE SHA ${{ github.event.pull_request.base.sha }}
+      - run: echo GH SHA ${{ github.sha }})
       - name: Get changed files
         id: changes
         # Set outputs using the command.
         run: |
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
-          echo "::set-output name=lines::$(git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }})"
+          echo "::set-output name=lines::$(git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }})"
   lint:
     runs-on: ubuntu-latest
     # require the first job to have ran
     needs: changedfiles
     # only run there are changed files
-    # if: ${{needs.changedfiles.outputs.ts}}
     steps:
       - name: echo changed files
         run: echo ${{needs.changedfiles.outputs.lines}}

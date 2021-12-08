@@ -4,6 +4,8 @@ function main () {
 
   console.log("foo")
 
+
+  console.log("new console log")
 }
 
 

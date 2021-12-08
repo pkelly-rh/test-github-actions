@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Run script file
         run: |
-          chmod +x ./scripts/gistfile.sh
-          ./scripts/gistfile.sh
+          chmod +x ./public/scripts/gistfile.sh
+          ./public/scripts/gistfile.sh
         shell: bash
       - run: echo "🍏 This job's status is ${{ job.status }}."

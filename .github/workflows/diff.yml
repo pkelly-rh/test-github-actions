@@ -18,13 +18,15 @@ jobs:
         run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
       - name: Set env BASE_SHA
-        run: echo "BASE_SHA=$(github.event.pull_request.base.sha)"
+        run: echo "BASE_SHA=$(github.event.pull_request.base.sha)" >> $GITHUB_ENV
 
       - run: echo nice branch bro ${{ env.BRANCH }}
       - run: echo nice ${{ env.BASE_SHA }}
       # - run: echo feature branch ${{GITHUB_REF#refs/heads/}}
       # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log | wc -l
-      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }} | grep console.log | wc -l
+      # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }} | grep console.log | wc -l
+      # - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }} | grep console.log | wc -l
+      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ env.BRANCH }}
 
 
       # GITHUB_REF#refs/heads/

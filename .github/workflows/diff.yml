@@ -1,5 +1,5 @@
 on:
-  pull_request:
+  pull_request2:
     types: [opened, reopened, synchronize, closed, ready_for_review]
 
 jobs:

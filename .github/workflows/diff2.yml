@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: echo BASE SHA ${{ github.event.pull_request.base.sha }}
-      - run: echo GH SHA ${{ github.sha }})
+      - run: echo GH SHA ${{ github.sha }}
       - name: Get changed files
         id: changes
         # Set outputs using the command.

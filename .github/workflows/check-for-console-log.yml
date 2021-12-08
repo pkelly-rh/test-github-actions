@@ -33,7 +33,7 @@ jobs:
         if: ${{ steps.get_base_sha.outputs.sha }} 
         run: |
           git fetch origin main ${{ steps.get_base_sha.outputs.sha }}
-          echo git diff ${{ steps.get_base_sha.outputs.sha }} ${{ GITHUB_REF#refs/heads/ }} | grep console.log | wc -l
+          echo git diff ${{ steps.get_base_sha.outputs.sha }} ${{ steps.source_branch_name.outputs.branch }} | grep console.log | wc -l
         id: total_console_logs
 
         # echo git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep console.log | wc -l

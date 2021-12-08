@@ -1,5 +1,5 @@
 on:
-  pull_request2:
+  pull_request:
     types: [opened, reopened, synchronize, closed, ready_for_review]
 
 

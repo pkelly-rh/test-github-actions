@@ -17,16 +17,17 @@ jobs:
           fetch-depth: 0
       - run: echo BASE SHA ${{ github.event.pull_request.base.sha }}
       - run: echo GH SHA ${{ github.sha }}
-      - name: Get changed files
-        id: changes
-        # Set outputs using the command.
-        run: |
-          echo "::set-output name=lines::$(git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }})"
-  lint:
-    runs-on: ubuntu-latest
-    # require the first job to have ran
-    needs: changedfiles
-    # only run there are changed files
-    steps:
-      - name: echo changed files
-        run: echo ${{needs.changedfiles.outputs.lines}}
+      - run: echo git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }}
+      # - name: Get changed files
+      #   id: changes
+      #   # Set outputs using the command.
+      #   run: |
+      #     echo "::set-output name=lines::$(git diff ${{ github.event.pull_request.base.sha }}..${{ github.sha }})"
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   # require the first job to have ran
+  #   needs: changedfiles
+  #   # only run there are changed files
+  #   steps:
+  #     - name: echo changed files
+  #       run: echo ${{needs.changedfiles.outputs.lines}}

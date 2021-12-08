@@ -11,6 +11,6 @@ consoleregexp='console.log('
 if test $(git diff main..special-branch | grep $consoleregexp | wc -l) != 0
 then 
   echo "git diff main..special-branch | grep $consoleregexp | wc -l"
-  echo "FAILURE"
+  echo "FAILURE old"
   exit 69
 fi

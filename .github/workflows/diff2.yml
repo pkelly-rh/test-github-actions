@@ -19,9 +19,20 @@ jobs:
       # - run: echo BASE SHA ${{ github.event.pull_request.base.sha }}
       # - run: echo GH SHA ${{ github.sha }}
       - name: Set another env
-        run: echo "TEST_FOO=$(git diff  ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log\( | wc -l)" >> $GITHUB_ENV
-      # - run: echo "TEST_FOO=4" >> $GITHUB_ENV
-      - name: Test
-        # run: echo SHORT is $GITHUB_SHA_SHORT
-        run: echo total ${{ env.TEST_FOO }}
+        run: echo "TOTAL_CONSOLE_LOGS=$(git diff  ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | grep console.log\( | wc -l)" >> $GITHUB_ENV
+      # - run: echo "TOTAL_CONSOLE_LOGS=0" >> $GITHUB_ENV
+      # - name: Test
+      #   if: env.TOTAL_CONSOLE_LOGS == 4
+      #   # run: echo SHORT is $GITHUB_SHA_SHORT
+      #   # run: echo total ${{ env.TOTAL_CONSOLE_LOGS }}
+      #   run: echo BOOOYA ${{ env.TOTAL_CONSOLE_LOGS > 0 }}
 
+      - name: Test
+        run: |
+          echo "Detected ${{env.TOTAL_CONSOLE_LOGS}} console.logs in this pull request"
+          if [[ ${{env.TOTAL_CONSOLE_LOGS}} > 0 ]]; then
+            echo "STOP! You violated the law!"
+            exit 42
+          else
+            echo "Nothing to see here. Move along."
+          fi

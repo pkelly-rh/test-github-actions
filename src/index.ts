@@ -6,6 +6,8 @@ function main () {
 
 
   console.log("new console log")
+
+  console.log("new console log 2")
 }
 
 
